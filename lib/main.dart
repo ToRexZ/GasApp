@@ -3,7 +3,6 @@ import 'package:flutter_blue/flutter_blue.dart';
 
 //https://blog.kuzzle.io/communicate-through-ble-using-flutter
 
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -31,6 +30,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<BluetoothService> _services;
+  BluetoothDevice _connectedDevice;
+
   @override
   void initState() {
     super.initState();
@@ -159,58 +161,58 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   List<ButtonTheme> _buildReadWriteNotifyButton(
-     BluetoothCharacteristic characteristic) {
-   List<ButtonTheme> buttons = new List<ButtonTheme>();
- 
-   if (characteristic.properties.read) {
-     buttons.add(
-       ButtonTheme(
-         minWidth: 10,
-         height: 20,
-         child: Padding(
-           padding: const EdgeInsets.symmetric(horizontal: 4),
-           child: RaisedButton(
-             color: Colors.blue,
-             child: Text('READ', style: TextStyle(color: Colors.white)),
-             onPressed: () {},
-           ),
-         ),
-       ),
-     );
-   }
-   if (characteristic.properties.write) {
-     buttons.add(
-       ButtonTheme(
-         minWidth: 10,
-         height: 20,
-         child: Padding(
-           padding: const EdgeInsets.symmetric(horizontal: 4),
-           child: RaisedButton(
-             child: Text('WRITE', style: TextStyle(color: Colors.white)),
-             onPressed: () {},
-           ),
-         ),
-       ),
-     );
-   }
-   if (characteristic.properties.notify) {
-     buttons.add(
-       ButtonTheme(
-         minWidth: 10,
-         height: 20,
-         child: Padding(
-           padding: const EdgeInsets.symmetric(horizontal: 4),
-           child: RaisedButton(
-             child: Text('NOTIFY', style: TextStyle(color: Colors.white)),
-             onPressed: () {},
-           ),
-         ),
-       ),
-     );
-   }
- 
-   return buttons;
- }
+      BluetoothCharacteristic characteristic) {
+    List<ButtonTheme> buttons = new List<ButtonTheme>();
+
+    if (characteristic.properties.read) {
+      buttons.add(
+        ButtonTheme(
+          minWidth: 10,
+          height: 20,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            child: RaisedButton(
+              color: Colors.blue,
+              child: Text('READ', style: TextStyle(color: Colors.white)),
+              onPressed: () {},
+            ),
+          ),
+        ),
+      );
+    }
+    if (characteristic.properties.write) {
+      buttons.add(
+        ButtonTheme(
+          minWidth: 10,
+          height: 20,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            child: RaisedButton(
+              child: Text('WRITE', style: TextStyle(color: Colors.white)),
+              onPressed: () {},
+            ),
+          ),
+        ),
+      );
+    }
+    if (characteristic.properties.notify) {
+      buttons.add(
+        ButtonTheme(
+          minWidth: 10,
+          height: 20,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            child: RaisedButton(
+              child: Text('NOTIFY', style: TextStyle(color: Colors.white)),
+              onPressed: () {},
+            ),
+          ),
+        ),
+      );
+    }
+
+    return buttons;
+  }
 
   @override
   Widget build(BuildContext context) => Scaffold(
